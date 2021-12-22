@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+ <title>confirm_delete</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="card" style="width: 18rem; margin-top:10%;margin-left:30%">
+   <div  class="card-body" style="background-color:aqua;">
+        <form method="POST" >
+
+    {% csrf_token %}
+    {{form|crispy}}
+    <p> ARE SURE WANT TO DELETE DETAIL OF Laptop Model_{{object.company_name}}{{object.model_name}}</p>
+
+   <a href="{% url 'delete_laptop' laptop.id %}"><button class="btn btn-outline-danger">DELETE</button></a>
+    <span style="padding:20px"><a href="{% url 'show_laptop' %}"><button class="btn btn-outline-primary" >CANCEL</button></a></span>
+
+</form>
+   </div>
+</div>
+{% endblock %}
